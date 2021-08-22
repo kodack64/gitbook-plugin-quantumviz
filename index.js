@@ -22,7 +22,8 @@ module.exports = {
                 page.content = page.content.replace(results[circuit_index], new_str);
             }
             
-            load_str = '<script src="https://unpkg.com/@microsoft/quantum-viz.js"></script>\n'
+            //load_str = '<script src="https://unpkg.com/@microsoft/quantum-viz.js"></script>\n'
+            load_str = '<script src="https://unpkg.com/@microsoft/quantum-viz.js@1.0.2/dist/qviz.min.js"></script>\n'            
             load_str += "<script>\n"
             load_str += "var circuit_list = {\n"
             for(let name of circuit_names){
