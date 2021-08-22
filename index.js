@@ -23,7 +23,7 @@ module.exports = {
             }
             
             //load_str = '<script src="https://unpkg.com/@microsoft/quantum-viz.js"></script>\n'
-            load_str = '<script src="https://unpkg.com/@microsoft/quantum-viz.js@1.0.2/dist/qviz.min.js"></script>\n'            
+            //load_str = '<script src="https://unpkg.com/@microsoft/quantum-viz.js@1.0.2/dist/qviz.min.js"></script>\n'            
             load_str += "<script>\n"
             load_str += "var circuit_list = {\n"
             for(let name of circuit_names){
@@ -52,12 +52,16 @@ module.exports = {
             */
             load_str += 
             `
-            for(let key in circuit_list){
-                var element = document.getElementById(key);
-                if (element == null) continue;
-                var circuit = circuit_list[key];
-                qviz.draw(circuit, element, qviz.STYLES['Default'])
-            }
+            var script = document.createElement('script');
+            script.onload = function () {
+                for(let key in circuit_list){
+                    var element = document.getElementById(key);
+                    if (element == null) continue;
+                    var circuit = circuit_list[key];
+                    qviz.draw(circuit, element, qviz.STYLES['Default'])
+                }
+            };
+            script.src = "https://unpkg.com/@microsoft/quantum-viz.js@1.0.2/dist/qviz.min.js";
             \n`
             load_str += "</script>\n"
             page.content += load_str;
