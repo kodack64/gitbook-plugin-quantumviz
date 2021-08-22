@@ -28,7 +28,7 @@ then run `npm update` and `npx honkit serve`.
 
 ## Usage
 
-Write the content of quantum circuit according to the [Circuit scheme](https://github.com/microsoft/quantum-viz.js/wiki/API-schema-reference). Then, content will be converted to javascript snippet to paste the circuits.
+Write the content of quantum circuit according to the [Circuit scheme](https://github.com/microsoft/quantum-viz.js/wiki/API-schema-reference). Then, content will be converted to javascript snippet to paste the circuits. The 
 
 ```
 To create the Bell-state, we perform quantum circuit as follows:
@@ -36,11 +36,12 @@ To create the Bell-state, we perform quantum circuit as follows:
 {
     qubits: [{ id: 0 }, { id: 1, numChildren: 1 }],
     operations: [
-        {gate: 'H',
+        {
+            gate: 'H', 
             targets: [{ qId: 1 }],
         },
         {
-            gate: 'X',
+            gate: 'X', 
             isControlled: true,
             controls: [{ qId: 0 }],
             targets: [{ qId: 1 }],
