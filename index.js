@@ -1,5 +1,11 @@
 
 module.exports = {
+    website: {
+        assets: "./static",
+        js: [
+            "qviz.min.js"
+        ],
+    },
     blocks: {
         qcircuit: {
             process: function(blk) {
@@ -22,17 +28,16 @@ module.exports = {
                 page.content = page.content.replace(results[circuit_index], new_str);
             }
             
-            //load_str = '<script src="https://unpkg.com/@microsoft/quantum-viz.js"></script>\n'
-            //load_str = '<script src="https://unpkg.com/@microsoft/quantum-viz.js@1.0.2/dist/qviz.min.js"></script>\n'            
+            load_str = ""
             load_str += "<script>\n"
             load_str += "var circuit_list = {\n"
             for(let name of circuit_names){
                 load_str += "    \""+name+"\": " + name + ",\n";
             }
             load_str += "}\n"
-            /*
             load_str += 
-            `if(document.readyState == 'loading'){
+            `
+            if(document.readyState == 'loading'){
                 window.addEventListener("load", function(){
                     for(let key in circuit_list){
                         var element = document.getElementById(key);
@@ -48,21 +53,8 @@ module.exports = {
                     var circuit = circuit_list[key];
                     qviz.draw(circuit, element, qviz.STYLES['Default'])
                 }
-            }\n`
-            */
-            load_str += 
+            }\n
             `
-            var script = document.createElement('script');
-            script.onload = function () {
-                for(let key in circuit_list){
-                    var element = document.getElementById(key);
-                    if (element == null) continue;
-                    var circuit = circuit_list[key];
-                    qviz.draw(circuit, element, qviz.STYLES['Default'])
-                }
-            };
-            script.src = "https://unpkg.com/@microsoft/quantum-viz.js@1.0.2/dist/qviz.min.js";
-            \n`
             load_str += "</script>\n"
             page.content += load_str;
             return page;
