@@ -37,22 +37,18 @@ module.exports = {
             load_str += "}\n"
             load_str += 
             `
-            if(document.readyState == 'loading'){
-                window.addEventListener("load", function(){
-                    for(let key in circuit_list){
-                        var element = document.getElementById(key);
-                        if (element == null) continue;
-                        var circuit = circuit_list[key];
-                        qviz.draw(circuit, element, qviz.STYLES['Default'])
-                    }
-                });
-            }else{
+            function draw_circuit() {
                 for(let key in circuit_list){
                     var element = document.getElementById(key);
                     if (element == null) continue;
                     var circuit = circuit_list[key];
                     qviz.draw(circuit, element, qviz.STYLES['Default'])
                 }
+            }
+            if(document.readyState == 'loading'){
+                window.addEventListener("load", draw_circuit);
+            }else{
+                draw_circuit();
             }\n
             `
             load_str += "</script>\n"
