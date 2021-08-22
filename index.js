@@ -31,7 +31,7 @@ module.exports = {
             load_str += "}\n"
             load_str += 
             `if(document.readyState == 'loading'){
-                window.addEventListener("DOMContentLoaded", function(){
+                window.addEventListener("load", function(){
                     for(let key in circuit_list){
                         var element = document.getElementById(key);
                         if (element == null) continue;
