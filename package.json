@@ -1,0 +1,14 @@
+{
+  "name": "gitbook-plugin-quantumviz",
+  "version": "1.0.0",
+  "description": "Quantum circuit drawer in Gitbook",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines": {
+    "gitbook": ">=2.0.0"
+  },
+  "author": "",
+  "license": "ISC"
+}
