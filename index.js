@@ -30,6 +30,7 @@ module.exports = {
                 load_str += "    \""+name+"\": " + name + ",\n";
             }
             load_str += "}\n"
+            /*
             load_str += 
             `if(document.readyState == 'loading'){
                 window.addEventListener("load", function(){
@@ -48,6 +49,16 @@ module.exports = {
                     qviz.draw(circuit, element, qviz.STYLES['Default'])
                 }
             }\n`
+            */
+            load_str += 
+            `
+            for(let key in circuit_list){
+                var element = document.getElementById(key);
+                if (element == null) continue;
+                var circuit = circuit_list[key];
+                qviz.draw(circuit, element, qviz.STYLES['Default'])
+            }
+            \n`
             load_str += "</script>\n"
             page.content += load_str;
             return page;
